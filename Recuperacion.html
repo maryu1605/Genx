@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperación de Contraseña</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f1f1f1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #7b3f9f;
+            /* Morado */
+            margin-bottom: 20px;
+        }
+        
+        p {
+            color: #9e4a9f;
+            /* Rosado */
+            margin-bottom: 20px;
+        }
+        
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        input[type="email"]:focus {
+            border-color: #7b3f9f;
+            /* Morado */
+        }
+        
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #7b3f9f;
+            /* Morado */
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #9e4a9f;
+        }
+        
+        .logo {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+        
+        .error {
+            color: red;
+            margin-top: 20px;
+        }
+        
+        .success {
+            color: green;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img class="logo" src="logo.png" alt="Logo">
+        <h1>GenX</h1>
+        <p>Ingresa tu correo electrónico para recuperar tu contraseña.</p>
+        <form id="resetForm">
+            <input type="email" id="email" placeholder="Correo Electrónico" required>
+            <button type="submit">Enviar Correo de Recuperación</button>
+        </form>
+        <p id="errorMessage" class="error"></p>
+        <p id="successMessage" class="success" style="display:none;">
+            Recuperaste tu contraseña, vuelve al <a href="Login.html">inicio de sesión</a>.
+        </p>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js"; import { getAuth, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js"; const firebaseConfig = { apiKey: "AIzaSyDda7QCfCZpnKlVe7ZjKEP3nE1rrGPy4HU",
+        authDomain: "genx-bc9e1.firebaseapp.com", projectId: "genx-bc9e1", storageBucket: "genx-bc9e1.firebasestorage.app", messagingSenderId: "805186559048", appId: "1:805186559048:web:0784df12407114f8e68c7d" }; const app = initializeApp(firebaseConfig);
+        const auth = getAuth(); const form = document.getElementById('resetForm'); const emailInput = document.getElementById('email'); const errorMessage = document.getElementById('errorMessage'); const successMessage = document.getElementById('successMessage');
+        form.addEventListener('submit', (e) => { e.preventDefault(); const email = emailInput.value.trim(); if (email === "") { errorMessage.textContent = "Por favor ingresa un correo electrónico válido."; return; } sendPasswordResetEmail(auth, email)
+        .then(() => { alert("Se ha enviado un correo de recuperación"); emailInput.value = ""; successMessage.style.display = 'block'; errorMessage.textContent = ""; }) .catch((error) => { let errorCode = error.code; let errorMessageText = ""; if (errorCode
+        === 'auth/user-not-found') { errorMessageText = "El correo electrónico no está registrado."; } else { errorMessageText = "Hubo un error al enviar el correo. Intenta de nuevo."; } errorMessage.textContent = errorMessageText; successMessage.style.display
+        = 'none'; }); });
+    </script>
+</body>
+
+</html>

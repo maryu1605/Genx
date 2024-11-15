@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - GenX</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5e1f7;
+            /* Color de fondo rosa claro */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        .register-container {
+            background-color: #f3d1ff;
+            /* Fondo de la tarjeta rosa pálido */
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 350px;
+        }
+        
+        .register-container h1 {
+            color: #800080;
+            /* Título en morado oscuro */
+            margin-bottom: 20px;
+        }
+        
+        .register-container input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #d17aff;
+            /* Borde en tono morado claro */
+            border-radius: 10px;
+            outline: none;
+        }
+        
+        .register-container input[type="submit"] {
+            background-color: #c71585;
+            /* Botón de enviar en rosa oscuro */
+            color: white;
+            cursor: pointer;
+            border: none;
+            font-weight: bold;
+        }
+        
+        .register-container input[type="submit"]:hover {
+            background-color: #a0136a;
+            /* Color al pasar el ratón: tono más oscuro de rosa */
+        }
+        
+        .social-login {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .social-login button {
+            width: 48%;
+            padding: 8px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .google-btn {
+            background-color: #d17aff;
+            /* Botón de Google en morado claro */
+            color: white;
+        }
+        
+        .facebook-btn {
+            background-color: #c71585;
+            /* Botón de Facebook en rosa oscuro */
+            color: white;
+        }
+        
+        .register-container p {
+            color: #4b0082;
+            /* Texto en morado oscuro */
+            font-size: 14px;
+        }
+        
+        .register-container a {
+            color: #d17aff;
+            /* Enlace en morado claro */
+            text-decoration: none;
+        }
+        
+        .register-container a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+
+    <!-- Incluye Firebase App y otros servicios en el orden correcto -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+</head>
+
+<body>
+    <div class="register-container">
+        <h1>Crear Cuenta</h1>
+        <form id="registerForm">
+            <input type="email" name="email" placeholder="Correo Electrónico" required>
+            <input type="text" name="username" placeholder="Nombre de Usuario" required>
+            <input type="password" name="password" placeholder="Contraseña" required>
+            <input type="date" name="dob" placeholder="Fecha de Nacimiento" required>
+            <input type="tel" name="phone" placeholder="Número de Teléfono" required>
+            <select id="departamento" name="departamento" required>
+                <option value="">Selecciona tu departamento</option>
+                <option value="Amazonas">Amazonas</option>
+                <option value="Antioquia">Antioquia</option>
+                <option value="Arauca">Arauca</option>
+                <option value="Atlántico">Atlántico</option>
+                <option value="Bolívar">Bolívar</option>
+                <option value="Boyacá">Boyacá</option>
+                <option value="Caldas">Caldas</option>
+                <option value="Caquetá">Caquetá</option>
+                <option value="Casanare">Casanare</option>
+                <option value="Cauca">Cauca</option>
+                <option value="Cesar">Cesar</option>
+                <option value="Chocó">Chocó</option>
+                <option value="Córdoba">Córdoba</option>
+                <option value="Cundinamarca">Cundinamarca</option>
+                <option value="Guainía">Guainía</option>
+                <option value="Guaviare">Guaviare</option>
+                <option value="Huila">Huila</option>
+                <option value="La Guajira">La Guajira</option>
+                <option value="Magdalena">Magdalena</option>
+                <option value="Meta">Meta</option>
+                <option value="Nariño">Nariño</option>
+                <option value="Norte de Santander">Norte de Santander</option>
+                <option value="Putumayo">Putumayo</option>
+                <option value="Quindío">Quindío</option>
+                <option value="Risaralda">Risaralda</option>
+                <option value="San Andrés y Providencia">San Andrés y Providencia</option>
+                <option value="Santander">Santander</option>
+                <option value="Sucre">Sucre</option>
+                <option value="Tolima">Tolima</option>
+                <option value="Valle del Cauca">Valle del Cauca</option>
+                <option value="Vaupés">Vaupés</option>
+                <option value="Vichada">Vichada</option>
+
+                <!-- Más opciones -->
+            </select>
+            <input type="text" name="municipio" placeholder="Municipio" required>
+            <input type="text" name="direccion" placeholder="Dirección" required>
+            <input type="submit" value="Registrarse">
+        </form>
+        <div class="social-login">
+            <button class="google-btn" id="googleLogin">Iniciar sesión con Google</button>
+            <button class="facebook-btn">Iniciar sesión con Facebook</button>
+        </div>
+        <p>¿Ya tienes una cuenta? <a href="Login.html">Iniciar sesión</a></p>
+    </div>
+
+    <script>
+        // Configuración de Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyDda7QCfCZpnKlVe7ZjKEP3nE1rrGPy4HU",
+            authDomain: "genx-bc9e1.firebaseapp.com",
+            projectId: "genx-bc9e1",
+            storageBucket: "genx-bc9e1.firebasestorage.app",
+            messagingSenderId: "805186559048",
+            appId: "1:805186559048:web:0784df12407114f8e68c7d",
+        };
+
+        // Inicializar Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const database = firebase.database();
+
+        // Referencia al formulario de registro
+        const registerForm = document.getElementById('registerForm');
+
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = registerForm.email.value;
+            const password = registerForm.password.value;
+            const username = registerForm.username.value;
+            const dob = registerForm.dob.value;
+            const phone = registerForm.phone.value;
+            const departamento = registerForm.departamento.value;
+            const municipio = registerForm.municipio.value;
+            const direccion = registerForm.direccion.value;
+
+            auth.createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    return database.ref('users/' + user.uid).set({
+                        username,
+                        email,
+                        dob,
+                        phone,
+                        departamento,
+                        municipio,
+                        direccion
+                    });
+                })
+                .then(() => {
+                    alert('Usuario registrado exitosamente');
+                    registerForm.reset();
+                    window.location.href = 'PreguntasRegistro.html'
+                })
+                .catch((error) => {
+                    alert('Error al registrar: ' + error.message);
+                });
+        });
+
+        // Autenticación con Google
+        const googleLogin = document.getElementById('googleLogin');
+        googleLogin.addEventListener('click', () => {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            auth.signInWithPopup(provider)
+                .then((result) => {
+                    alert('Inicio de sesión con Google exitoso');
+                    window.location.href = 'PreguntasRegistro.html'
+                })
+                .catch((error) => {
+                    alert('Error al iniciar sesión con Google: ' + error.message);
+                });
+        });
+    </script>
+</body>
+
+</html>

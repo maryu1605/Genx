@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base de Datos GenX - Tienda de Ropa</title>
+</head>
+
+<body>
+    <h1>Crear Base de Datos de Productos GenX</h1>
+    <button id="create-db-button">Crear Base de Datos</button>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js"; import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js"; const firebaseConfig = { apiKey: "AIzaSyDda7QCfCZpnKlVe7ZjKEP3nE1rrGPy4HU",
+        authDomain: "genx-bc9e1.firebaseapp.com", projectId: "genx-bc9e1", storageBucket: "genx-bc9e1.appspot.com", messagingSenderId: "805186559048", appId: "1:805186559048:web:0784df12407114f8e68c7d" }; const app = initializeApp(firebaseConfig); const
+        db = getFirestore(app); async function createDatabase() { const productos = [ { id: 1, name: "Conjunto Nike", price: 55000, image: "prenda1.jpeg", available: true, brand: "Nike", color: "Rosa, Blanco", sizes: "S, M, L, XL", type: "mujer", sport:
+        "fitness", garment: "conjunto" }, { id: 2, name: "Camisa Nike", price: 85000, image: "prenda7.jpg", available: false, brand: "Nike", color: "Negro, Blanco", sizes: "M, L", type: "hombre", sport: "crossfit", garment: "camisa" }, // Nuevos productos
+        { id: 3, name: "Pantalón Adidas", price: 70000, image: "prenda2.jpg", available: true, brand: "Adidas", color: "Negro", sizes: "S, M, L", type: "hombre", sport: "athleisure", garment: "pantalon" }, { id: 4, name: "Short Puma", price: 40000, image:
+        "prenda3.jpg", available: true, brand: "Puma", color: "Azul", sizes: "M, L, XL", type: "ninos", sport: "soccer", garment: "short" }, { id: 5, name: "Body Reebok", price: 95000, image: "prenda4.jpg", available: true, brand: "Reebok", color: "Rojo",
+        sizes: "S, M", type: "mujer", sport: "fitness", garment: "body" }, { id: 6, name: "Gorra Nike", price: 30000, image: "prenda5.jpg", available: true, brand: "Nike", color: "Negro", sizes: "Única", type: "todos", sport: "crossfit", garment: "gorras"
+        }, { id: 7, name: "Traje de Baño Speedo", price: 120000, image: "prenda6.jpg", available: true, brand: "Speedo", color: "Gris", sizes: "M, L, XL", type: "hombre", sport: "swim", garment: "bano" }, { id: 8, name: "Camiseta Under Armour", price:
+        60000, image: "prenda8.jpg", available: true, brand: "Under Armour", color: "Blanco", sizes: "S, M, L", type: "hombre", sport: "fitness", garment: "camisa" }, { id: 9, name: "Conjunto Adidas", price: 90000, image: "prenda9.jpg", available: true,
+        brand: "Adidas", color: "Azul, Blanco", sizes: "M, L", type: "ninas", sport: "athleisure", garment: "conjunto" }, { id: 10, name: "Short Reebok", price: 45000, image: "prenda10.jpg", available: true, brand: "Reebok", color: "Gris", sizes: "M",
+        type: "hombre", sport: "compression", garment: "short" }, { id: 11, name: "Pantalón Puma", price: 75000, image: "prenda11.jpg", available: false, brand: "Puma", color: "Negro", sizes: "S, M", type: "mujer", sport: "crossfit", garment: "pantalon"
+        }, { id: 12, name: "Traje de Baño Arena", price: 130000, image: "prenda12.jpg", available: true, brand: "Arena", color: "Azul", sizes: "S, M, L", type: "mujer", sport: "swim", garment: "bano" }, { id: 13, name: "Gorra Adidas", price: 28000, image:
+        "prenda13.jpg", available: true, brand: "Adidas", color: "Blanco", sizes: "Única", type: "todos", sport: "golf", garment: "gorras" }, { id: 14, name: "Camiseta Puma", price: 70000, image: "prenda14.jpg", available: true, brand: "Puma", color:
+        "Rojo", sizes: "S, M, L, XL", type: "hombre", sport: "soccer", garment: "camisa" }, { id: 15, name: "Short Nike", price: 50000, image: "prenda15.jpg", available: true, brand: "Nike", color: "Negro", sizes: "M, L", type: "mujer", sport: "fitness",
+        garment: "short" }, { id: 16, name: "Body Under Armour", price: 110000, image: "prenda16.jpg", available: true, brand: "Under Armour", color: "Blanco", sizes: "S, M, L", type: "mujer", sport: "compression", garment: "body" }, { id: 17, name: "Short",
+        price: 90000, image: "prenda17.jpg", available: true, brand: "Speedo", color: "Gris", sizes: "M, L, XL", type: "hombre", sport: "swim", garment: "pantalon" }, { id: 18, name: "Camiseta Nike", price: 65000, image: "prenda18.jpg", available: true,
+        brand: "Nike", color: "Azul", sizes: "S, M", type: "ninas", sport: "athleisure", garment: "camisa" } ]; try { for (let producto of productos) { await addDoc(collection(db, "productos"), producto); } alert("Base"); console.log("Base de datos creada");
+        } catch (e) { console.error("Error al crear la base de datos: ", e); } } document.getElementById('create-db-button').onclick = createDatabase;
+    </script>
+</body>
+
+</html>

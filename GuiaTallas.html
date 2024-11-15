@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Tallas - GenX</title>
+    <style>
+        /* Estilos generales */
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        header {
+            background-color: #add8e6;
+            color: #333;
+            width: 100%;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-left,
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-logo {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .header-right a {
+            margin: 0 10px;
+            color: #333;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        h1 {
+            color: #333;
+            margin: 20px 0;
+        }
+        
+        .guide-container {
+            width: 90%;
+            max-width: 800px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .guide-section {
+            margin-bottom: 20px;
+        }
+        
+        .guide-section h2 {
+            color: #333;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .guide-section h2 i {
+            font-size: 1.5rem;
+            color: #28a745;
+        }
+        
+        .guide-description {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .guide-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .guide-buttons button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: transform 0.2s ease, background-color 0.3s ease;
+        }
+        
+        .guide-buttons button:hover {
+            background-color: #1f7a30;
+            transform: scale(1.05);
+        }
+        
+        ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        ul li {
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        ul li i {
+            color: #007bff;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        
+        table,
+        th,
+        td {
+            border: 1px solid #ddd;
+        }
+        
+        th,
+        td {
+            padding: 8px;
+            text-align: center;
+        }
+        
+        th {
+            background-color: #add8e6;
+            color: #333;
+        }
+    </style>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <div class="header-left">
+            <img src="Logo.png" alt="Logo" class="header-logo">
+            <span>GenX Tienda</span>
+        </div>
+        <div class="header-right">
+            <a href="PaginaPrincipal.html"><i class="fas fa-home"></i> Página Principal</a>
+            <a href="carrito.html"><i class="fas fa-shopping-cart"></i> Carrito</a>
+        </div>
+    </header>
+
+    <h1>Guía de Tallas</h1>
+    <div class="guide-container">
+        <div class="guide-section">
+            <h2><i class="fas fa-ruler"></i> Selecciona una categoría:</h2>
+            <div class="guide-buttons">
+                <button onclick="showGuide('ropa')">Ropa</button>
+                <button onclick="showGuide('zapatos')">Zapatos</button>
+                <button onclick="showGuide('accesorios')">Accesorios</button>
+            </div>
+            <div id="guide-description" class="guide-description">
+                <!-- Descripción de la guía se cargará dinámicamente aquí -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const guides = {
+            ropa: `
+                <h3><i class="fas fa-tshirt"></i> Guía de Tallas de Ropa</h3>
+                <p>Para medir correctamente, sigue estos pasos:</p>
+                <ul>
+                    <li><i class="fas fa-user-circle"></i> <strong>Pecho:</strong> Mide la parte más amplia del pecho.</li>
+                    <li><i class="fas fa-user-circle"></i> <strong>Cintura:</strong> Mide alrededor de la cintura natural.</li>
+                    <li><i class="fas fa-user-circle"></i> <strong>Cadera:</strong> Mide la parte más amplia de las caderas.</li>
+                </ul>
+                <p>Consulta la tabla de tallas:</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Talla</th>
+                            <th>Pecho (cm)</th>
+                            <th>Cintura (cm)</th>
+                            <th>Cadera (cm)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>S</td>
+                            <td>86-91</td>
+                            <td>66-71</td>
+                            <td>91-96</td>
+                        </tr>
+                        <tr>
+                            <td>M</td>
+                            <td>91-96</td>
+                            <td>71-76</td>
+                            <td>96-101</td>
+                        </tr>
+                        <tr>
+                            <td>L</td>
+                            <td>96-101</td>
+                            <td>76-81</td>
+                            <td>101-106</td>
+                        </tr>
+                    </tbody>
+                </table>
+            `,
+            zapatos: `
+                <h3><i class="fas fa-shoe-prints"></i> Guía de Tallas de Zapatos</h3>
+                <p>Para medir correctamente, sigue estos pasos:</p>
+                <ul>
+                    <li><i class="fas fa-ruler-horizontal"></i> Coloca un papel en el suelo y pon el pie sobre él.</li>
+                    <li><i class="fas fa-ruler-horizontal"></i> Marca el talón y la punta del dedo más largo.</li>
+                    <li><i class="fas fa-ruler-horizontal"></i> Mide la distancia entre las dos marcas.</li>
+                </ul>
+                <p>Consulta la tabla de tallas:</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Medida (cm)</th>
+                            <th>Talla (EU)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>22.5</td>
+                            <td>36</td>
+                        </tr>
+                        <tr>
+                            <td>23.5</td>
+                            <td>37</td>
+                        </tr>
+                        <tr>
+                            <td>24.5</td>
+                            <td>38</td>
+                        </tr>
+                    </tbody>
+                </table>
+            `,
+            accesorios: `
+                <h3><i class="fas fa-hat-cowboy"></i> Guía de Tallas de Accesorios</h3>
+                <p>Recomendaciones para medir:</p>
+                <ul>
+                    <li><i class="fas fa-belt"></i> <strong>Cinturones:</strong> Mide la cintura en la zona donde usarás el cinturón.</li>
+                    <li><i class="fas fa-user-circle"></i> <strong>Sombreros:</strong> Mide la circunferencia de la cabeza justo por encima de las cejas.</li>
+                </ul>
+            `
+        };
+
+        function showGuide(category) {
+            const guideContainer = document.getElementById("guide-description");
+            guideContainer.innerHTML = guides[category];
+            guideContainer.style.display = "block";
+        }
+    </script>
+</body>
+
+</html>

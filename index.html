@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenX - Tienda de Ropa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            background-color: #f7f7f7;
+        }
+        /* Estilo de la barra superior */
+        
+        .navbar {
+            background-color: #add8e6;
+            /* Azul clarito pastel */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar img {
+            height: 40px;
+            /* Ajusta el tamaño del logo */
+        }
+        
+        .navbar a {
+            color: #333;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 16px;
+        }
+        /* Presentación GenX */
+        
+        .presentation {
+            background-color: #4a0a8b;
+            /* Color verde */
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .presentation h2 {
+            font-size: 32px;
+        }
+        
+        .presentation p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+        /* Estilo de la galería de productos */
+        
+        .slider {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+            overflow: hidden;
+        }
+        
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .slide img {
+            width: 100%;
+            height: auto;
+        }
+        
+        .product-info {
+            background-color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        
+        .product-name {
+            font-weight: bold;
+            margin: 0;
+        }
+        
+        .product-price {
+            color: #6a0dad;
+            margin: 5px 0;
+        }
+        
+        .availability {
+            font-size: 14px;
+            color: green;
+        }
+        /* Sección de Noticias Deportivas */
+        
+        .sports-news {
+            background-color: #e0f7fa;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .sports-news h2 {
+            font-size: 28px;
+            color: #00796b;
+        }
+        
+        .news-item {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .news-item h3 {
+            font-size: 24px;
+            color: #00796b;
+        }
+        
+        .news-item p {
+            font-size: 16px;
+            color: #333;
+        }
+        
+        .news-item a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #00796b;
+            text-decoration: none;
+        }
+        
+        .news-item a:hover {
+            text-decoration: underline;
+        }
+        /* Barra de redes sociales */
+        
+        .social-bar {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        
+        .social-bar a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        
+        .social-bar a:hover {
+            color: #ddd;
+        }
+        /* Estilo para el footer con información legal */
+        
+        .footer {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 14px;
+        }
+        
+        .footer a {
+            color: #add8e6;
+            text-decoration: none;
+        }
+        /* Botones de navegación */
+        
+        .prev,
+        .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        
+        .prev {
+            left: 0;
+        }
+        
+        .next {
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Barra de navegación -->
+    <div class="navbar">
+        <img src="logo.png" alt="GenX Logo">
+        <!-- Reemplazar con tu logo -->
+        <div>
+            <a href="Chatbox.html">Ayuda</a>
+            <a href="Login.html">Ingresar</a>
+            <a href="Registro.html">Crear Cuenta</a>
+            <a href="Tendencias.html">Tendencias Deportivas</a>
+        </div>
+    </div>
+
+    <!-- Presentación de GenX -->
+    <div class="presentation">
+        <h2>Bienvenidos a GenX</h2>
+        <p>GenX es tu tienda de ropa en línea donde encontrarás las mejores opciones para tu estilo, comodidad y tendencias. ¡Haz tu compra hoy y exprésate con GenX!</p>
+    </div>
+
+    <!-- Slider de productos -->
+    <div class="slider">
+        <div class="slides">
+            <!-- Producto 1 -->
+            <div class="slide">
+                <img src="prenda1.jpeg" alt="Conjunto Nike">
+                <div class="product-info">
+                    <p class="product-name">Conjunto Nike</p>
+                    <p class="product-price">$55,000</p>
+                    <p class="availability">Disponible</p>
+                </div>
+            </div>
+            <!-- Producto 2 -->
+            <div class="slide">
+                <img src="prenda7.jpg" alt="Camisa Nike">
+                <div class="product-info">
+                    <p class="product-name">Camisa Nike</p>
+                    <p class="product-price">$85,000</p>
+                    <p class="availability">Agotado</p>
+                </div>
+            </div>
+            <!-- Producto 3 -->
+            <div class="slide">
+                <img src="prenda2.jpg" alt="Pantalón Adidas">
+                <div class="product-info">
+                    <p class="product-name">Pantalón Adidas</p>
+                    <p class="product-price">$70,000</p>
+                    <p class="availability">Disponible</p>
+                </div>
+            </div>
+            <!-- Producto 4 -->
+            <div class="slide">
+                <img src="prenda3.jpg" alt="Short Puma">
+                <div class="product-info">
+                    <p class="product-name">Short Puma</p>
+                    <p class="product-price">$40,000</p>
+                    <p class="availability">Disponible</p>
+                </div>
+            </div>
+            <!-- Producto 5 -->
+            <div class="slide">
+                <img src="prenda4.jpg" alt="Body Reebok">
+                <div class="product-info">
+                    <p class="product-name">Body Reebok</p>
+                    <p class="product-price">$95,000</p>
+                    <p class="availability">Disponible</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botones de navegación -->
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+    </div>
+
+    <!-- Sección de Noticias Deportivas -->
+    <div class="sports-news">
+        <h2>Actualizaciones en el mundo del deporte</h2>
+        <div class="news-item">
+            <h3>Victoria histórica en el fútbol femenino</h3>
+            <p>El equipo de fútbol femenino logró una victoria histórica al vencer a su principal rival en el campeonato nacional. Este triunfo marca un antes y un después en el deporte femenino del país.</p>
+            <a href="#">Leer más...</a>
+        </div>
+        <div class="news-item">
+            <h3>Maratón de Nueva York 2024: Los favoritos al título</h3>
+            <p>Con la proximidad de la maratón más importante del mundo, los atletas favoritos para ganar el título están listos para darlo todo en las calles de Nueva York.</p>
+            <a href="#">Leer más...</a>
+        </div>
+        <div class="news-item">
+            <h3>Reebok presenta su nueva línea de ropa para atletas</h3>
+            <p>La marca deportiva Reebok ha lanzado su última colección de ropa especializada para atletas de alto rendimiento, con tecnologías innovadoras que mejoran el rendimiento.</p>
+            <a href="#">Leer más...</a>
+        </div>
+    </div>
+
+    <!-- Barra de redes sociales -->
+    <div class="social-bar">
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">Twitter</a>
+        <a href="#">LinkedIn</a>
+    </div>
+
+    <!-- Información legal -->
+    <div class="footer">
+        <p>&copy; 2024 GenX - Todos los derechos reservados.</p>
+        <p><a href="#">Política de Privacidad</a> | <a href="#">Términos y Condiciones</a></p>
+    </div>
+
+    <script>
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let slides = document.querySelectorAll(".slide");
+            if (slideIndex >= slides.length) {
+                slideIndex = 0;
+            }
+            if (slideIndex < 0) {
+                slideIndex = slides.length - 1;
+            }
+            let slideContainer = document.querySelector(".slides");
+            slideContainer.style.transform = `translateX(${-slideIndex * 100}%)`;
+        }
+
+        function moveSlide(n) {
+            slideIndex += n;
+            showSlides();
+        }
+
+        // Cambia automáticamente cada 3 segundos
+        setInterval(() => {
+            slideIndex++;
+            showSlides();
+        }, 3000);
+    </script>
+
+</body>
+
+</html>

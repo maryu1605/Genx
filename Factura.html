@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factura - GenX</title>
+    <style>
+        /* Estilos para la factura */
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .invoice-container {
+            width: 90%;
+            max-width: 800px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .invoice-header {
+            text-align: center;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .invoice-header img {
+            width: 100px;
+            margin-bottom: 10px;
+        }
+        
+        h1,
+        h2,
+        h3 {
+            color: #333;
+            margin: 5px 0;
+        }
+        
+        .customer-info,
+        .cart-items,
+        .total-amount,
+        .invoice-footer {
+            margin-bottom: 20px;
+        }
+        
+        .total-amount {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #333;
+        }
+        
+        .product-item {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #ddd;
+            padding: 8px 0;
+        }
+        
+        .download-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .download-buttons button {
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .download-pdf {
+            background-color: #007bff;
+            color: #fff;
+        }
+        
+        .download-image {
+            background-color: #28a745;
+            color: #fff;
+        }
+        
+        .back-to-cart {
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+        
+        .back-to-cart {
+            background-color: #add8e6;
+            color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="invoice-container" id="invoice">
+        <div class="invoice-header">
+            <img src="Logo.png" alt="GenX Logo">
+            <h1>Factura de Compra</h1>
+            <h3>GenX Tienda</h3>
+            <p>Fecha y Hora: <span id="invoice-date-time"></span></p>
+        </div>
+
+        <div class="customer-info" id="customer-info">
+            <!-- Información del cliente cargada desde localStorage -->
+        </div>
+
+        <div class="cart-items" id="cart-items">
+            <h2>Productos:</h2>
+            <!-- Lista de productos del carrito -->
+        </div>
+
+        <div class="total-amount" id="total-amount">
+            <!-- Total de la compra -->
+        </div>
+
+        <div class="invoice-footer">
+            <p>Gracias por su compra en GenX Tienda</p>
+        </div>
+    </section>
+
+    <div class="download-buttons">
+        <button class="download-pdf" onclick="downloadInvoiceAsPDF()">Descargar como PDF</button>
+        <button class="download-image" onclick="downloadInvoiceAsImage()">Descargar como Imagen</button>
+    </div>
+
+    <div>
+        <button class="back-to-cart" onclick="window.location.href='Carrito.html'">Volver al Carrito</button>
+    </div>
+
+    <script>
+        // Función para cargar y mostrar la factura desde localStorage
+        function loadInvoice() {
+            const customerData = JSON.parse(localStorage.getItem("customerData"));
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const total = localStorage.getItem("total");
+            const dateTime = new Date();
+            const dateTimeFormatted = dateTime.toLocaleDateString() + " " + dateTime.toLocaleTimeString();
+
+            // Mostrar la fecha y hora
+            document.getElementById("invoice-date-time").textContent = dateTimeFormatted;
+
+            // Mostrar la información del cliente
+            const customerInfoContainer = document.getElementById("customer-info");
+            customerInfoContainer.innerHTML = `
+                <p><strong>Nombre:</strong> ${customerData.name}</p>
+                <p><strong>Dirección:</strong> ${customerData.address}</p>
+                <p><strong>Email:</strong> ${customerData.email}</p>
+                <p><strong>Teléfono:</strong> ${customerData.phone}</p>
+                <p><strong>Método de Pago:</strong> ${customerData.paymentMethod}</p>
+            `;
+
+            // Mostrar los productos del carrito
+            const cartItemsContainer = document.getElementById("cart-items");
+            cartItemsContainer.innerHTML = "<h2>Productos:</h2>";
+
+            cart.forEach(item => {
+                cartItemsContainer.innerHTML += `
+                    <div class="product-item">
+                        <p>${item.name}</p>
+                        <p>$${item.price.toLocaleString()} COP</p>
+                    </div>
+                `;
+            });
+
+            // Mostrar el total de la compra
+            document.getElementById("total-amount").textContent = `Total: $${parseInt(total).toLocaleString()} COP`;
+        }
+
+        function downloadInvoiceAsPDF() {
+            html2canvas(document.getElementById("invoice")).then(canvas => {
+                const imgData = canvas.toDataURL("image/png");
+                const pdf = new jsPDF();
+                pdf.addImage(imgData, 'PNG', 10, 10, 190, 0);
+                pdf.save("Factura_GenX.pdf");
+            });
+        }
+
+        function downloadInvoiceAsImage() {
+            html2canvas(document.getElementById("invoice")).then(canvas => {
+                const link = document.createElement('a');
+                link.href = canvas.toDataURL("image/png");
+                link.download = 'Factura_GenX.png';
+                link.click();
+            });
+        }
+
+        // Cargar y mostrar la factura al cargar la página
+        loadInvoice();
+    </script>
+
+    <!-- Importar html2canvas y jsPDF para las opciones de descarga -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Preferencias</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-image: url('fondo.jpg');
+            background-size: cover;
+            background-position: center;
+            color: black;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 800px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            margin: 20px 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .slide {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        
+        .slide.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        button {
+            background-color: #6a0dad;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        button:disabled {
+            background-color: #ccc;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #6a0dad;
+        }
+        
+        .question {
+            margin: 20px 0;
+            color: #333;
+        }
+        
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 5px;
+            font-size: 16px;
+        }
+        
+        .option input {
+            margin-right: 5px;
+        }
+        
+        .palette {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        
+        .palette img {
+            width: 60px;
+            height: 60px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+        
+        .palette img:hover {
+            border-color: #6a0dad;
+        }
+        
+        .option input[type="checkbox"],
+        .option input[type="radio"] {
+            accent-color: #6a0dad;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Preferencias</h1>
+
+        <div class="slide active">
+            <div class="question">1. ¿Buscas prendas para?</div>
+            <div class="options">
+                <label class="option"><input type="checkbox" name="gender" value="Hombre"> Hombre</label>
+                <label class="option"><input type="checkbox" name="gender" value="Mujer"> Mujer</label>
+                <label class="option"><input type="checkbox" name="gender" value="Niño"> Niño</label>
+                <label class="option"><input type="checkbox" name="gender" value="Niña"> Niña</label>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="question">2. Al elegir tu prenda te fijas en:</div>
+            <div class="options">
+                <label class="option"><input type="checkbox" name="criteria" value="Precio"> Precio</label>
+                <label class="option"><input type="checkbox" name="criteria" value="Material"> Material</label>
+                <label class="option"><input type="checkbox" name="criteria" value="Color"> Color</label>
+                <label class="option"><input type="checkbox" name="criteria" value="Referencias"> Referencias</label>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="question">3. ¿Qué paleta de colores prefieres?</div>
+            <div class="palette">
+                <label class="option"><input type="radio" name="color_palette" value="Color Pastel">
+                    <img src="ruta_de_imagen_palette1.jpg" alt="Color Pastel"></label>
+                <label class="option"><input type="radio" name="color_palette" value="Colores Neutros">
+                    <img src="ruta_de_imagen_palette2.jpg" alt="Colores Neutros"></label>
+                <label class="option"><input type="radio" name="color_palette" value="Colores Fuertes">
+                    <img src="ruta_de_imagen_palette3.jpg" alt="Colores Fuertes"></label>
+                <label class="option"><input type="radio" name="color_palette" value="Gama de Colores Específica">
+                    <img src="ruta_de_imagen_palette4.jpg" alt="Gama de Colores Específica"></label>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="question">4. ¿Con qué frecuencia compras ropa?</div>
+            <div class="options">
+                <label class="option"><input type="checkbox" name="purchase_frequency" value="Semanal"> Semanal</label>
+                <label class="option"><input type="checkbox" name="purchase_frequency" value="Mensual"> Mensual</label>
+                <label class="option"><input type="checkbox" name="purchase_frequency" value="Cada Tres Meses"> Cada Tres Meses</label>
+                <label class="option"><input type="checkbox" name="purchase_frequency" value="Rara vez"> Rara vez</label>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="question">5. ¿Qué estilo prefieres?</div>
+            <div class="options">
+                <label class="option"><input type="checkbox" name="style" value="Athleisure"> Athleisure</label>
+                <label class="option"><input type="checkbox" name="style" value="Fitness"> Fitness</label>
+                <label class="option"><input type="checkbox" name="style" value="CrossFit"> CrossFit</label>
+                <label class="option"><input type="checkbox" name="style" value="Compression Wear"> Compression Wear</label>
+                <label class="option"><input type="checkbox" name="style" value="Soccer Apparel"> Soccer Apparel</label>
+                <label class="option"><input type="checkbox" name="style" value="Golf Wear"> Golf Wear</label>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="question">6. ¿Cuánto estás dispuesto a gastar en una prenda?</div>
+            <div class="options">
+                <label class="option"><input type="checkbox" name="budget" value="Menos de 100.000COP"> Menos de $100.000COP</label>
+                <label class="option"><input type="checkbox" name="budget" value="$100.000COP - $200.000COP"> $100.000COP - $200.000COP</label>
+                <label class="option"><input type="checkbox" name="budget" value="$200.000COP - $300.000COP"> $200.000COP - $300.000COP</label>
+                <label class="option"><input type="checkbox" name="budget" value="Más de $300.000COP"> Más de $300.000COP</label>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <button id="prevBtn" disabled>Anterior</button>
+            <button id="nextBtn">Siguiente</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            prevBtn.disabled = index === 0;
+            nextBtn.textContent = index === slides.length - 1 ? "Ir a Página Principal" : "Siguiente";
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentSlide === slides.length - 1) {
+                window.location.href = 'PaginaPrincipal.html';
+            } else {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        });
+
+        showSlide(currentSlide);
+    </script>
+</body>
+
+</html>
